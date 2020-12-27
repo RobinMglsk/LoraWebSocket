@@ -68,15 +68,24 @@ export default class LoraWS {
 
     #onOpen(){
         this.#logger.debug('Connected to:', this.#wsUri);
+
+        if(typeof this.onOpen === 'function')
+            this.onOpen();
     }
 
-    #onClose(){
+    #onClose(event){
         this.#logger.debug('Disconnected from:', this.#wsUri);
         this.#websocket = undefined;
+
+        if(typeof this.onClose === 'function')
+            this.onClose(event);
     }
 
     #onError(event){
-        this.#logger.error('Error:',  event);
+        this.#logger.error('Websocket error');
+
+        if(typeof this.onError === 'function')
+            this.onError(event);
     }
 
     #onMessage(event){
@@ -100,7 +109,8 @@ export default class LoraWS {
                 msg: decodedMsg.substr(PAYLOAD_BEGIN)
             }
 
-            this.onMessage(data);
+            if(typeof this.onMessage === 'function')
+                this.onMessage(data);
 		}
     }
 
