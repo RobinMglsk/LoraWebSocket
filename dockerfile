@@ -1,2 +1,8 @@
+FROM node as builder
+
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+
 FROM nginx
-COPY . /usr/share/nginx/html
+COPY --from=builder / /usr/share/nginx/html
