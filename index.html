@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lora Debugger</title>
+		<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+	</head>
+	<body>
+		<div class="container-fluid p-3">
+			<div class="row">
+				<div class="col-md-4">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" value="">
+                        </div>
+                        <button type="button" class="btn btn-success mt-3" id="btn-connect">Connect</button>
+                        <button type="button" class="btn btn-danger mt-3" id="btn-disconnect">Disconnect</button>
+                    </div>
+
+					<form action="get" id="sendForm">
+						<textarea name="msg" id="msgInput" cols="30" rows="10" class="form-control"></textarea>
+						<button type="submit" class="btn btn-primary mt-3">Send</button>
+					</form>
+				</div>
+				<div class="col-md-8">
+                    <span class="badge bg-secondary">Message id: <span id="msgId">unknown</span></span>
+                    <span class="badge bg-secondary">Message length: <span id="msgLength">0</span></span>
+                    <span class="badge bg-secondary">From: <span id="msgFrom">xx:xx:xx:xx</span></span>
+                    <span class="badge bg-secondary">To: <span id="msgTo">xx:xx:xx:xx</span></span>
+                    <p><b>Decoded payload:</b> <span id="lastMsgDecode"></span></p>
+					<div class="card">
+						<div class="card-body bg-dark bg-gradient text-light">
+							<pre id="logger" class="mb-0"></pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="app.js"></script>
+	</body>
+</html>

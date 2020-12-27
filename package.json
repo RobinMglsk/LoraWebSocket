@@ -1,0 +1,17 @@
+{
+  "name": "lora-ws",
+  "version": "1.0.0",
+  "description": "Lora websocket interface",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RobinMglsk",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.0.0-beta1"
+  },
+  "repository": {
+    "url": "https://github.com/RobinMglsk/LoraWebsocket"
+  }
+}
