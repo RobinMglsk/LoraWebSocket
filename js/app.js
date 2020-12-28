@@ -55,7 +55,7 @@ function handleMessageReceived(data) {
 	msgLengthEl.innerText = data.msgLength;
 	msgFromEl.innerText = data.senderAddress;
 	msgToEl.innerText = data.receiverAddress;
-	lastDecodedMsgEl = data.msg;
+	lastDecodedMsgEl.innerText = data.msg;
 }
 
 function handleOnOpen() {}

@@ -101,22 +101,22 @@ export default class LoraWS {
 			}
             const byteArray = new Uint8Array(byteNumbers);
 
-            data = {
+            const payloadData = {
                 senderAddress: this.#getSenderAddress(byteArray),
                 receiverAddress: this.#getReceiverAddress(byteArray),
                 msgId: this.#getMsgId(byteArray),
                 msgLength: this.#getMsgLength(byteArray),
-                msg: decodedMsg.substr(PAYLOAD_BEGIN)
+                msg: decodedMsg.substr(this.PAYLOAD_BEGIN)
             }
 
             if(typeof this.onMessage === 'function')
-                this.onMessage(data);
+                this.onMessage(payloadData);
 		}
     }
 
     #getSenderAddress(msg) {
         const macAddress = [];
-        for (i = SENDER_MAC_BEGIN; i <= SENDER_MAC_END; i++) {
+        for (let i = this.SENDER_MAC_BEGIN; i <= this.SENDER_MAC_END; i++) {
             macAddress.push(msg[i].toString(16));
         }
     
@@ -125,7 +125,7 @@ export default class LoraWS {
     
     #getReceiverAddress(msg) {
         const macAddress = [];
-        for (i = RECEIVER_MAC_BEGIN; i <= RECEIVER_MAC_END; i++) {
+        for (let i = this.RECEIVER_MAC_BEGIN; i <= this.RECEIVER_MAC_END; i++) {
             macAddress.push(msg[i].toString(16));
         }
     
@@ -134,7 +134,7 @@ export default class LoraWS {
     
     #getMsgId(msg) {
         let msgId = 0;
-        for (i = PAYLOAD_ID_BEGIN; i <= PAYLOAD_ID_END; i++) {
+        for (let i = this.PAYLOAD_ID_BEGIN; i <= this.PAYLOAD_ID_END; i++) {
             msgId = (msgId << 8) | msg[i];
         }
         return msgId;
@@ -142,7 +142,7 @@ export default class LoraWS {
     
     #getMsgLength(msg) {
         let msgLength = 0;
-        for (i = PAYLOAD_LENGTH_BEGIN; i <= PAYLOAD_LENGTH_END; i++) {
+        for (let i = this.PAYLOAD_LENGTH_BEGIN; i <= this.PAYLOAD_LENGTH_END; i++) {
             msgLength = (msgLength << 8) | msg[i];
         }
         return msgLength;
