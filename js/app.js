@@ -6,6 +6,7 @@ const msgFromEl = document.getElementById('msgFrom');
 const msgToEl = document.getElementById('msgTo');
 const addressEl = document.getElementById('address');
 const msgIdEl = document.getElementById('msgId');
+const RSSIEl = document.getElementById('RSSI');
 const formEl = document.getElementById('sendForm');
 const msgInputEl = document.getElementById('msgInput');
 
@@ -56,6 +57,7 @@ function handleMessageReceived(data) {
 	msgFromEl.innerText = data.senderAddress;
 	msgToEl.innerText = data.receiverAddress;
 	lastDecodedMsgEl.innerText = data.msg;
+	RSSIEl.innerText = data.RSSI;
 }
 
 function handleOnOpen() {}
